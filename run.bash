@@ -4,6 +4,10 @@
 cd server
 py -3 -m venv venv
 source venv/Scripts/activate
+
+# Install Flask
+pip install -r requirements.txt
+
 export FLASK_APP=backend.py
 
 # Start Flask app in the background
@@ -24,6 +28,7 @@ curl -X POST -F "file=@./record.csv" http://localhost:5000/delineation
 cd ./client/record-summary
 
 # Install dependencies and run Angular app
+npm install -g @angular/cli
 npm install
 ng serve &
 
