@@ -1,0 +1,27 @@
+<div class="time-wrapper">
+    <div>
+        <label for="start">From</label>
+        <input type="time" [max]="endTime" name="start" [(ngModel)]="startTime"/>
+    </div>
+    <div>
+        <label for="end">To</label>
+        <input type="time" [min]="startTime" name="end" [(ngModel)]="endTime"/>
+    </div>
+</div>
+
+
+<div class="segment-wrapper">
+    <div *ngFor="let heartRate of data; index as i" [title]="heartRate" [ngStyle]="{'background-color': getColor(i, heartRate)}" class="segment"></div>
+</div>
+
+<div class="metrics-wrapper">
+    <div>
+        ❤️Avg: {{getAverage()}}
+    </div>
+    <div>
+        ❤️Max: {{getMax()}}
+    </div>
+    <div>
+        ❤️Min: {{getMin()}}
+    </div>
+</div>
