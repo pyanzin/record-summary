@@ -20,7 +20,7 @@ export class RecordSummaryComponent {
   }
 
   timeToMinutes(time: string) {
-    var [hours, minutes] = time.split(':');
+    let [hours, minutes] = time.split(':');
 
     return Number(hours) * 60 + Number(minutes);
   }
@@ -32,7 +32,7 @@ export class RecordSummaryComponent {
   }
 
   getAverage() {
-    var selectedRange = this.getSelectedRange();
+    let selectedRange = this.getSelectedRange();
     return Math.floor(selectedRange.reduce((a, s) => s + a, 0) / selectedRange.length);
   }
 
@@ -40,13 +40,35 @@ export class RecordSummaryComponent {
     return this.getSelectedRange().reduce((a, s) => a > s ? a : s, 0);
   }
 
+  getMaxTime() {
+    let maxValue = this.getMax();
+    let index = this.getSelectedRange().indexOf(maxValue);
+    return this.minutesToTime(this.startMinute() + index);
+  }
+
   getMin() {
     return this.getSelectedRange().reduce((a, s) => a < s ? a : s, 1000);
+  }
+
+  getMinTime() {
+    let minValue = this.getMin();
+    let index = this.getSelectedRange().indexOf(minValue);
+    return this.minutesToTime(this.startMinute() + index);
   }
 
   private getSelectedRange() {
     if (this.startMinute() > this.endMinute())
       return [];
     return this.data.slice(this.startMinute(), this.endMinute());
+  }
+
+  private minutesToTime(totalMinutes: number) {
+    let hours = Math.floor(totalMinutes / 60);
+    let minutes = totalMinutes % 60;
+
+    let formattedHours = String(hours).padStart(2, '0');
+    let formattedMinutes = String(minutes).padStart(2, '0');
+
+    return `${formattedHours}:${formattedMinutes}`;
   }
 }

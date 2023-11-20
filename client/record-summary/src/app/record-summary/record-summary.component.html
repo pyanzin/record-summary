@@ -1,11 +1,11 @@
 <div class="time-wrapper">
     <div>
         <label for="start">From</label>
-        <input type="time" [max]="endTime" name="start" [(ngModel)]="startTime"/>
+        <input type="time" name="start" [(ngModel)]="startTime"/>
     </div>
     <div>
         <label for="end">To</label>
-        <input type="time" [min]="startTime" name="end" [(ngModel)]="endTime"/>
+        <input type="time" name="end" [(ngModel)]="endTime"/>
     </div>
 </div>
 
@@ -19,9 +19,9 @@
         ❤️Avg: {{getAverage()}}
     </div>
     <div>
-        ❤️Max: {{getMax()}}
+        ❤️Max: {{getMax()}} at {{getMaxTime()}}
     </div>
     <div>
-        ❤️Min: {{getMin()}}
+        ❤️Min: {{getMin()}} at {{getMinTime()}}
     </div>
 </div>
